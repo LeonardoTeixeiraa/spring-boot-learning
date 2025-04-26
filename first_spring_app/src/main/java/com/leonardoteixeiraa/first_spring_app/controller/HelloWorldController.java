@@ -11,17 +11,17 @@ public class HelloWorldController {
     private HelloWorldService helloWorldService;
 
     //Construtor declarado manualmente, porém poderia ser substituído pela anotação @Autowired
-    public HelloWorldController(HelloWorldService helloWorldService){
+    public HelloWorldController(HelloWorldService helloWorldService) {
         this.helloWorldService = helloWorldService;
     }
 
     @GetMapping
-    public String helloWorld(){
+    public String helloWorld() {
         return helloWorldService.HelloWorld() + " " + helloWorldService.firstApplicationMessage();
     }
 
     @PostMapping("/{id}")
-    public String helloWorldPost(@PathVariable("id") String id, @RequestParam(value = "filter", defaultValue = "nenhum") String filter, @RequestBody User body){
+    public String helloWorldPost(@PathVariable("id") String id, @RequestParam(value = "filter", defaultValue = "nenhum") String filter, @RequestBody User body) {
         return "Hello World " + filter;
     }
 
