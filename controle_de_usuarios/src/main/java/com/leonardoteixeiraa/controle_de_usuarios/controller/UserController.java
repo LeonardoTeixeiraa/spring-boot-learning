@@ -28,8 +28,9 @@ public class UserController {
     public void postUser(@RequestBody User user){
         repository.save(user);
     }
-    @PutMapping()
-    public void putUser(@RequestBody User user){
+    @PutMapping("/{id}")
+    public void putUser(@PathVariable("Integer id") Integer id, @RequestBody User user){
+        user.setId(id);
         repository.save(user);
     }
 
