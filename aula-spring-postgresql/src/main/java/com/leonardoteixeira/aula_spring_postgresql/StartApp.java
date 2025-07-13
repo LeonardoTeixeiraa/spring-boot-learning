@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class StartApp implements CommandLineRunner {
 
@@ -13,16 +15,25 @@ public class StartApp implements CommandLineRunner {
     private UserRepository repository;
     @Override
     public void run(String... args) throws Exception {
-        User user = new User();
-        user.setName("Leonardo");
-        user.setUsername("LeoTeixeira");
-        user.setPassword("12345");
+        List<User> users = repository.findByName("Leonardo");
+        for (User u : users) {
+            System.out.println(u);
+        }
+    }
 
+    private void insertUser(){
+        User user = new User();
+        user.setName("JOAO");
+        user.setUsername("JAOfelix");
+        user.setPassword("Jao122");
         repository.save(user);
 
         for (User u: repository.findAll()){
             System.out.println(u);
         }
+    }
+
+
 
     }
-}
+
