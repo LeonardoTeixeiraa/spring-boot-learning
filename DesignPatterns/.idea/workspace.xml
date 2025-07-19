@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98c1a133-50f8-4d98-a865-a39279908d85" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DesignPatternsJava.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofFacadeExample/Facade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofFacadeExample/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofFacadeExample/subsistema1/crm/CrmService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofFacadeExample/subsistema2/cep/CepApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofSingletonExample/SingletonEager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofSingletonExample/SingletonLazy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofSingletonExample/SingletonLazyHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofSingletonExample/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/Comportamento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/ComportamentoAgressivo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/ComportamentoDefensivo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/ComportamentoNormal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/Robo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GofStrategyExample/Test.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="300cs8Ql5SfQXq1ca9B1MbJBgCN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/leonardo-teixeira/Documents/Spring-Java/DesignPatternsJava",
+    "onboarding.tips.debug.path": "/home/leonardo-teixeira/Documents/Spring-Java/DesignPatterns/src/Main.java"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98c1a133-50f8-4d98-a865-a39279908d85" name="Changes" comment="" />
+      <created>1752768137904</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752768137904</updated>
+    </task>
+    <servers />
+  </component>
+</project>
