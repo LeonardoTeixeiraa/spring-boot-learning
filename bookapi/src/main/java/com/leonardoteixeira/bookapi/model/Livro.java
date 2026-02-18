@@ -1,6 +1,7 @@
 package com.leonardoteixeira.bookapi.model;
 
 import jakarta.persistence.*;
+import com.leonardoteixeira.bookapi.dto.GutendexLivroDTO;
 
 import java.util.List;
 
@@ -19,8 +20,15 @@ public class Livro {
     )
     private List<Autor> autores;
     private String titulo;
-    private Integer numeroDownloads;
+    private Long numeroDownloads;
+    private List<String> idiomas;
 
+    public Livro(GutendexLivroDTO livroDTO){
+        this.titulo = livroDTO.titulo();
+        this.autores = livroDTO.autores();
+        this.numeroDownloads = livroDTO.numeroDownloads();
+        this.idiomas = livroDTO.idiomas();
+    }
     public Long getId() {
         return id;
     }
@@ -33,11 +41,11 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public Integer getNumeroDownloads() {
+    public Long getNumeroDownloads() {
         return numeroDownloads;
     }
 
-    public void setNumeroDownloads(Integer numeroDownloads) {
+    public void setNumeroDownloads(Long numeroDownloads) {
         this.numeroDownloads = numeroDownloads;
     }
 }
