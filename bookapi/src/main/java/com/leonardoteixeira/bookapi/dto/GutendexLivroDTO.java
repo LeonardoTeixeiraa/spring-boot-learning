@@ -3,7 +3,6 @@ package com.leonardoteixeira.bookapi.dto;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.leonardoteixeira.bookapi.model.Autor;
-import org.springframework.boot.jackson.autoconfigure.JacksonProperties;
 
 import java.util.List;
 

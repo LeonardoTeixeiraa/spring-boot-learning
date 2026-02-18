@@ -21,6 +21,10 @@ public class Livro {
     private List<Autor> autores;
     private String titulo;
     private Long numeroDownloads;
+    @ElementCollection
+    @CollectionTable(name = "livro_idiomas",
+            joinColumns = @JoinColumn(name = "livro_id"))
+    @Column(name = "idioma")
     private List<String> idiomas;
 
     public Livro(GutendexLivroDTO livroDTO){
@@ -31,6 +35,22 @@ public class Livro {
     }
     public Long getId() {
         return id;
+    }
+
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+
+    public List<String> getIdiomas() {
+        return idiomas;
+    }
+
+    public void setIdiomas(List<String> idiomas) {
+        this.idiomas = idiomas;
     }
 
     public String getTitulo() {
