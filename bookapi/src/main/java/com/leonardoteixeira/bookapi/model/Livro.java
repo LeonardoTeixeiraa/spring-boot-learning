@@ -2,6 +2,8 @@ package com.leonardoteixeira.bookapi.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "livro")
 public class Livro {
@@ -9,9 +11,13 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "autor_id")
-    private Autor autor;
+    @ManyToMany
+    @JoinTable(
+            name = "livro_autor",
+            joinColumns = @JoinColumn(name = "livro_id"),
+            inverseJoinColumns = @JoinColumn(name = "autor_id")
+    )
+    private List<Autor> autores;
     private String titulo;
     private Integer numeroDownloads;
 

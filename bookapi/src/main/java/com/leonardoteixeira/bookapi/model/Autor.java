@@ -12,7 +12,7 @@ public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "autores")
     private List<Livro> livros;
     private String nome;
     private Date anoNascimento;
