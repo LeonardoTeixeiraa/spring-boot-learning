@@ -1,12 +1,14 @@
 package com.leonardoteixeira.bookapi.model;
 
+import com.leonardoteixeira.bookapi.dto.GuntendexAutorDTO;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "autor")
+@Table(name = "autor",
+        uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Autor {
 
     @Id
@@ -17,6 +19,12 @@ public class Autor {
     private String nome;
     private Date anoNascimento;
     private Date anoFalecimento;
+
+    public Autor(GuntendexAutorDTO autorDTO) {
+        this.nome = autorDTO.nome();
+        this.anoNascimento = autorDTO.anoNascimento();
+        this.anoFalecimento = autorDTO.anoFalecimento();
+    }
 
     public Long getId() {
         return id;

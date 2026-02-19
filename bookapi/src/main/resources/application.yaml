@@ -1,5 +1,15 @@
 spring:
   application:
     name: bookapi
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:3306/${DB_NAME}?useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      show-sql: true
+  flyway:
+    enabled: true
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record GutendexLivroDTO(@JsonAlias("title") String titulo,
-                               @JsonAlias("authors") List<Autor> autores,
+                               @JsonAlias("authors") List<GuntendexAutorDTO> autores,
                                @JsonAlias("languanges") List<String> idiomas,
                                @JsonAlias("download_count") Long numeroDownloads) {
 }

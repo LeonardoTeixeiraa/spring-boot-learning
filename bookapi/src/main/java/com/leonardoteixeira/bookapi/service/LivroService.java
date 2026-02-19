@@ -1,8 +1,11 @@
 package com.leonardoteixeira.bookapi.service;
 
+import com.leonardoteixeira.bookapi.dto.GuntendexAutorDTO;
 import com.leonardoteixeira.bookapi.dto.GutendexLivroDTO;
 import com.leonardoteixeira.bookapi.dto.LivroDTO;
+import com.leonardoteixeira.bookapi.model.Autor;
 import com.leonardoteixeira.bookapi.model.Livro;
+import com.leonardoteixeira.bookapi.repository.AutorRepository;
 import com.leonardoteixeira.bookapi.repository.LivroRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +20,37 @@ public class LivroService {
     private final LivroRepository livroRepository;
     private final GuntendexClient client;
     private final ConverteDados conversor;
+    private final  AutorRepository autorRepository;
 
-    public LivroService(LivroRepository livroRepository, GuntendexClient client, ConverteDados conversor) {
+    public LivroService(LivroRepository livroRepository, GuntendexClient client, ConverteDados conversor, AutorRepository autorRepository) {
         this.livroRepository = livroRepository;
         this.client = client;
         this.conversor = conversor;
+        this.autorRepository = autorRepository;
     }
 
-    private void importarLivroApi(String titulo){
+    private Livro importarLivroApi(String titulo){
         String tituloFormatado = URLEncoder.encode(titulo, StandardCharsets.UTF_8);
         String url = "https://gutendex.com/books/?search=" + tituloFormatado;
         String json = client.obterDados(url);
 
         GutendexLivroDTO dto = conversor.obterDados(json, GutendexLivroDTO.class);
-        Livro livro = new Livro(dto);
-        livroRepository.save(livro);
+
+        List<Autor> autores = buscarOuCriarAutores(dto.autores());
+
+        Livro livro = new Livro();
+        livro.setTitulo(dto.titulo());
+        livro.setNumeroDownloads(dto.numeroDownloads());
+        livro.setIdiomas(dto.idiomas());
+        livro.setAutores(autores);
+        return livroRepository.save(livro);
+    }
+
+    private List<Autor> buscarOuCriarAutores(List<GuntendexAutorDTO> autoresDTO) {
+        return autoresDTO.stream()
+                .map(a -> autorRepository.findByNome(a.nome())
+                        .orElseGet(() -> autorRepository.save(new Autor(a))))
+                .toList();
     }
 
     private LivroDTO buscarLivroPorTitulo(String titulo){
