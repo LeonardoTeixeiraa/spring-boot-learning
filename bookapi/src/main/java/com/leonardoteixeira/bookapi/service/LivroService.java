@@ -1,6 +1,7 @@
 package com.leonardoteixeira.bookapi.service;
 
 import com.leonardoteixeira.bookapi.dto.GuntendexAutorDTO;
+import com.leonardoteixeira.bookapi.dto.GuntendexResponseDTO;
 import com.leonardoteixeira.bookapi.dto.GutendexLivroDTO;
 import com.leonardoteixeira.bookapi.dto.LivroDTO;
 import com.leonardoteixeira.bookapi.model.Autor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,12 +31,19 @@ public class LivroService {
         this.autorRepository = autorRepository;
     }
 
-    private Livro importarLivroApi(String titulo){
+    public Livro importarLivroApi(String titulo){
         String tituloFormatado = URLEncoder.encode(titulo, StandardCharsets.UTF_8);
         String url = "https://gutendex.com/books/?search=" + tituloFormatado;
         String json = client.obterDados(url);
 
-        GutendexLivroDTO dto = conversor.obterDados(json, GutendexLivroDTO.class);
+        GuntendexResponseDTO response =
+                conversor.obterDados(json, GuntendexResponseDTO.class);
+
+        if (response.results() == null || response.results().isEmpty()) {
+            throw new RuntimeException("Livro não encontrado na API");
+        }
+
+        GutendexLivroDTO dto = response.results().get(0);
 
         List<Autor> autores = buscarOuCriarAutores(dto.autores());
 
@@ -47,13 +56,16 @@ public class LivroService {
     }
 
     private List<Autor> buscarOuCriarAutores(List<GuntendexAutorDTO> autoresDTO) {
+        if (autoresDTO == null || autoresDTO.isEmpty()){
+            return Collections.emptyList();
+        }
         return autoresDTO.stream()
                 .map(a -> autorRepository.findByNome(a.nome())
                         .orElseGet(() -> autorRepository.save(new Autor(a))))
                 .toList();
     }
 
-    private LivroDTO buscarLivroPorTitulo(String titulo){
+    public LivroDTO buscarLivroPorTitulo(String titulo){
         Optional<Livro> livroOpt = livroRepository.findByTitulo(titulo);
         if (livroOpt.isEmpty()) {
            importarLivroApi(titulo);
@@ -63,7 +75,7 @@ public class LivroService {
         return new LivroDTO(l.getTitulo(), l.getAutores(), l.getIdiomas(), l.getNumeroDownloads());
     }
 
-    private List<LivroDTO> buscarTodosOsLivros(){
+    public List<LivroDTO> buscarTodosOsLivros(){
         List<Livro> livros = livroRepository.findAll();
 
         if (livros.isEmpty()){
@@ -74,7 +86,7 @@ public class LivroService {
                 .toList();
     }
 
-    private List<LivroDTO> buscarLivroPorIdioma(String idioma){
+    public List<LivroDTO> buscarLivroPorIdioma(String idioma){
         List<Livro> livros = livroRepository.findByIdiomasContaining(idioma);
         if (livros.isEmpty()){
             return null;

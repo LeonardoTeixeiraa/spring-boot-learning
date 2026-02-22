@@ -10,7 +10,7 @@ import java.util.List;
 public class Livro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -20,14 +20,15 @@ public class Livro {
             inverseJoinColumns = @JoinColumn(name = "autor_id")
     )
     private List<Autor> autores;
-
+    @Column(nullable = false)
     private String titulo;
+    @Column(name = "numero_downloads")
     private Long numeroDownloads;
 
     @ElementCollection
     @CollectionTable(name = "livro_idiomas",
             joinColumns = @JoinColumn(name = "livro_id"))
-    @Column(name = "idioma")
+    @Column(name = "idioma", nullable = false)
     private List<String> idiomas;
 
     public Long getId() {

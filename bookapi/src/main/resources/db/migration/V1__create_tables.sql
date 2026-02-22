@@ -1,11 +1,10 @@
-
 -- Tabela Autor
 CREATE TABLE autor (
     id BIGINT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     ano_nascimento DATE,
     ano_falecimento DATE,
-    CONSTRAINT uk_autor_nome UNIQUE (nome)
+    CONSTRAINT uk_autor_nome UNIQUE (nome),
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

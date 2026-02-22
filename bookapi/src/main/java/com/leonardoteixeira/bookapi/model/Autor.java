@@ -1,9 +1,9 @@
 package com.leonardoteixeira.bookapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leonardoteixeira.bookapi.dto.GuntendexAutorDTO;
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,13 +12,19 @@ import java.util.List;
 public class Autor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Autor() {
+    }
+
     @ManyToMany(mappedBy = "autores")
+    @JsonIgnore
     private List<Livro> livros;
+    @Column(nullable = false, unique = true)
     private String nome;
-    private Date anoNascimento;
-    private Date anoFalecimento;
+    private Integer anoNascimento;
+    private Integer anoFalecimento;
 
     public Autor(GuntendexAutorDTO autorDTO) {
         this.nome = autorDTO.nome();
@@ -46,19 +52,19 @@ public class Autor {
         this.nome = nome;
     }
 
-    public Date getAnoNascimento() {
+    public Integer getAnoNascimento() {
         return anoNascimento;
     }
 
-    public void setAnoNascimento(Date anoNascimento) {
+    public void setAnoNascimento(Integer anoNascimento) {
         this.anoNascimento = anoNascimento;
     }
 
-    public Date getAnoFalecimento() {
+    public Integer getAnoFalecimento() {
         return anoFalecimento;
     }
 
-    public void setAnoFalecimento(Date anoFalecimento) {
+    public void setAnoFalecimento(Integer anoFalecimento) {
         this.anoFalecimento = anoFalecimento;
     }
 }
